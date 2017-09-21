@@ -20,19 +20,19 @@ chef_gem "aws-sdk-core" do
   action :install
 end
 
-ruby_block "attach to ALB" do
+ruby_block "attach to NLB" do
   block do
     require "aws-sdk-core"
 
-    raise "alb_helper block not specified in layer JSON" if node[:alb_helper].nil?
-    raise "Target group ARN not specified in layer JSON" if node[:alb_helper][:target_group_arn].nil?
+    raise "nlb_helper block not specified in layer JSON" if node[:nlb_helper].nil?
+    raise "Target group ARN not specified in layer JSON" if node[:nlb_helper][:target_group_arn].nil?
 
     stack = search("aws_opsworks_stack").first
     instance = search("aws_opsworks_instance", "self:true").first
 
     stack_region = stack[:region]
     ec2_instance_id = instance[:ec2_instance_id]
-    target_group_arn = node[:alb_helper][:target_group_arn]
+    target_group_arn = node[:nlb_helper][:target_group_arn]
 
     Chef::Log.info("Creating ELB client in region #{stack_region}")
     client = Aws::ElasticLoadBalancingV2::Client.new(region: stack_region)
