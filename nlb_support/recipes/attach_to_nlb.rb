@@ -20,7 +20,7 @@ chef_gem "aws-sdk-core" do
   action :install
 end
 
-ruby_block "attach to NLB" do
+ruby_block "attach_to_NLB" do
   block do
     require "aws-sdk-core"
 
