@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: alb_support
-# Recipe:: attach_to_alb
+# Cookbook Name:: nlb_support
+# Recipe:: attach_to_nlb
 #
 # Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
